@@ -1,4 +1,4 @@
-import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { deleteItem } from "../../store";
 import { useActionState } from "react";
 
@@ -19,10 +19,13 @@ function RouteComponent() {
   const [, action] = useActionState(() => {}, null);
 
   return (
-    <form action={action}>
-      Item: {item}
-      <FormButtons item={item} />
-    </form>
+    <div>
+      <Link to="/items">Back to items</Link>
+      <form action={action}>
+        Item: {item}
+        <FormButtons item={item} />
+      </form>
+    </div>
   );
 }
 
@@ -35,6 +38,7 @@ function FormButtons({ item }: { item: string }) {
         await deleteItem(item);
         // !! When sync is false - no crash, but stale data is shown and /items route is not rerendered
         await router.invalidate({ sync: true });
+        // await router.invalidate({ forcePending: true }); // - this causes browser hang indefinitely
         await navigate({ to: "/items" });
       }}
     >
