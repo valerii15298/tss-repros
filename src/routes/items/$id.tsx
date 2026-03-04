@@ -33,7 +33,7 @@ function FormButtons({ item }: { item: string }) {
     <button
       formAction={async () => {
         await deleteItem(item);
-        // !! When sync is false - no crash
+        // !! When sync is false - no crash, but stale data is shown and /items route is not rerendered
         await router.invalidate({ sync: true });
         await navigate({ to: "/items" });
       }}
