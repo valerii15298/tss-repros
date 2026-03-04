@@ -1,9 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
 function Index() {
-  return <div>Index</div>;
+  return (
+    <div>
+      <Link to="/items">Items</Link>
+    </div>
+  );
 }
