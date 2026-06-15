@@ -8,6 +8,7 @@ export function getRouter() {
     scrollRestoration: true,
     defaultPreload: 'intent',
     defaultPreloadStaleTime: 0,
+    defaultErrorComponent: ({ error }) => <div>error: {String(error)}</div>,
   })
 
   return router
