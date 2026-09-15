@@ -18,9 +18,9 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: RootDocument,
-  errorComponent({ error: { message } }) {
+  errorComponent({ error }) {
     return (
-      <div>errorComponent from __root.tsx (createRootRoute): {message}</div>
+      <div>errorComponent from __root.tsx (createRootRoute): {String(error)}</div>
     );
   },
 });
